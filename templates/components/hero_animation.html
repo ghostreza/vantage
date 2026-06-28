@@ -1,0 +1,477 @@
+<!-- templates/components/hero_animation.html -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-teal-900">
+    
+    <!-- Background Grid Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <svg width="100%" height="100%">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5" class="text-teal-400"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Canvas for Particle Effects -->
+    <canvas id="particleCanvas" class="absolute inset-0 w-full h-full"></canvas>
+
+    <!-- Main Animation Container -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left: Text Content -->
+            <div class="text-white space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/30 rounded-full text-teal-300 text-sm font-medium backdrop-blur-sm">
+                    <span class="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></span>
+                    Transforming Data Into Decisions
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                    Dari <span class="text-red-400 line-through opacity-60">Manual & Kusut</span>
+                    <br>
+                    Menuju <span class="bg-gradient-to-r from-teal-400 to-cyan-300 bg-clip-text text-transparent">Otomatis & Efisien</span>
+                </h1>
+                
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    Vantage Solutions mengubah proses bisnis yang rumit dan memakan waktu menjadi sistem otomatis yang cerdas. Data Analytics, Data Engineering, dan Process Automation untuk UMKM, bisnis menengah, dan mahasiswa.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="#services" class="px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-teal-500/50 transition-all duration-300 transform hover:-translate-y-1 text-center">
+                        Lihat Solusi Kami
+                    </a>
+                    <button onclick="openChatWidget()" class="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-center">
+                        💬 Tanya AI Assistant
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Animation SVG -->
+            <div class="relative">
+                <div class="relative aspect-square max-w-lg mx-auto">
+                    <!-- Glow Effect -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse"></div>
+                    
+                    <!-- Main SVG Animation -->
+                    <svg id="transformationSvg" viewBox="0 0 500 500" class="relative w-full h-full">
+                        <defs>
+                            <!-- Gradients -->
+                            <linearGradient id="chaosGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#f97316;stop-opacity:0.6" />
+                            </linearGradient>
+                            
+                            <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#14b8a6;stop-opacity:0.8" />
+                            </linearGradient>
+                            
+                            <linearGradient id="clarityGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                            </linearGradient>
+
+                            <!-- Filters -->
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Phase 1: Chaos - Tangled Threads -->
+                        <g id="chaosGroup" opacity="1">
+                            <path class="chaos-thread" d="M 100 150 Q 200 100 250 200 T 400 180" stroke="url(#chaosGradient)" stroke-width="3" fill="none" opacity="0.7"/>
+                            <path class="chaos-thread" d="M 150 250 Q 180 300 220 280 T 350 320" stroke="url(#chaosGradient)" stroke-width="3" fill="none" opacity="0.7"/>
+                            <path class="chaos-thread" d="M 120 350 Q 200 380 280 340 T 380 380" stroke="url(#chaosGradient)" stroke-width="3" fill="none" opacity="0.7"/>
+                            <path class="chaos-thread" d="M 200 120 Q 250 180 300 150 T 420 200" stroke="url(#chaosGradient)" stroke-width="3" fill="none" opacity="0.7"/>
+                            
+                            <!-- Chaos Nodes -->
+                            <circle class="chaos-node" cx="150" cy="180" r="6" fill="#ef4444" opacity="0.8"/>
+                            <circle class="chaos-node" cx="280" cy="220" r="6" fill="#f97316" opacity="0.8"/>
+                            <circle class="chaos-node" cx="350" cy="300" r="6" fill="#ef4444" opacity="0.8"/>
+                            <circle class="chaos-node" cx="200" cy="350" r="6" fill="#f97316" opacity="0.8"/>
+                            <circle class="chaos-node" cx="380" cy="250" r="6" fill="#ef4444" opacity="0.8"/>
+                        </g>
+
+                        <!-- Phase 2: Processing - Transition -->
+                        <g id="processGroup" opacity="0">
+                            <path class="process-thread" d="M 100 250 L 200 250 L 250 200 L 300 250 L 400 250" stroke="url(#processGradient)" stroke-width="4" fill="none" opacity="0.8"/>
+                            <path class="process-thread" d="M 100 300 L 200 300 L 250 350 L 300 300 L 400 300" stroke="url(#processGradient)" stroke-width="4" fill="none" opacity="0.8"/>
+                            
+                            <!-- Processing Nodes -->
+                            <circle class="process-node" cx="200" cy="250" r="8" fill="#f59e0b" opacity="0.9"/>
+                            <circle class="process-node" cx="300" cy="250" r="8" fill="#14b8a6" opacity="0.9"/>
+                            <circle class="process-node" cx="250" cy="200" r="8" fill="#f59e0b" opacity="0.9"/>
+                            <circle class="process-node" cx="250" cy="350" r="8" fill="#14b8a6" opacity="0.9"/>
+                            
+                            <!-- Scanning Line -->
+                            <line id="scanLine" x1="100" y1="0" x2="100" y2="500" stroke="#14b8a6" stroke-width="2" opacity="0.5" filter="url(#glow)"/>
+                        </g>
+
+                        <!-- Phase 3: Clarity - Structured Dashboard -->
+                        <g id="clarityGroup" opacity="0">
+                            <!-- Main Structure Lines -->
+                            <path class="clarity-thread" d="M 100 250 L 400 250" stroke="url(#clarityGradient)" stroke-width="5" fill="none" filter="url(#glow)"/>
+                            <path class="clarity-thread" d="M 250 100 L 250 400" stroke="url(#clarityGradient)" stroke-width="5" fill="none" filter="url(#glow)"/>
+                            
+                            <!-- Dashboard Elements -->
+                            <rect class="dashboard-card" x="120" y="120" width="80" height="60" rx="8" fill="url(#clarityGradient)" opacity="0.3" stroke="#14b8a6" stroke-width="2"/>
+                            <rect class="dashboard-card" x="300" y="120" width="80" height="60" rx="8" fill="url(#clarityGradient)" opacity="0.3" stroke="#14b8a6" stroke-width="2"/>
+                            <rect class="dashboard-card" x="120" y="320" width="80" height="60" rx="8" fill="url(#clarityGradient)" opacity="0.3" stroke="#14b8a6" stroke-width="2"/>
+                            <rect class="dashboard-card" x="300" y="320" width="80" height="60" rx="8" fill="url(#clarityGradient)" opacity="0.3" stroke="#14b8a6" stroke-width="2"/>
+                            
+                            <!-- Chart Bars -->
+                            <rect class="chart-bar" x="140" y="150" width="15" height="20" fill="#14b8a6" opacity="0"/>
+                            <rect class="chart-bar" x="160" y="140" width="15" height="30" fill="#06b6d4" opacity="0"/>
+                            <rect class="chart-bar" x="180" y="145" width="15" height="25" fill="#14b8a6" opacity="0"/>
+                            
+                            <!-- Connection Nodes -->
+                            <circle class="clarity-node" cx="250" cy="250" r="12" fill="#14b8a6" filter="url(#glow)"/>
+                            <circle class="clarity-node" cx="120" cy="250" r="8" fill="#06b6d4" filter="url(#glow)"/>
+                            <circle class="clarity-node" cx="380" cy="250" r="8" fill="#06b6d4" filter="url(#glow)"/>
+                            <circle class="clarity-node" cx="250" cy="120" r="8" fill="#06b6d4" filter="url(#glow)"/>
+                            <circle class="clarity-node" cx="250" cy="380" r="8" fill="#06b6d4" filter="url(#glow)"/>
+                            
+                            <!-- Data Flow Lines -->
+                            <path class="data-flow" d="M 120 250 L 250 250" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                            <path class="data-flow" d="M 250 250 L 380 250" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                            <path class="data-flow" d="M 250 120 L 250 250" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                            <path class="data-flow" d="M 250 250 L 250 380" stroke="#14b8a6" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+                        </g>
+
+                        <!-- Status Text -->
+                        <text id="statusText" x="250" y="480" text-anchor="middle" fill="#14b8a6" font-size="16" font-weight="600" opacity="0">
+                            Automated & Efficient
+                        </text>
+                    </svg>
+
+                    <!-- Phase Indicators -->
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex gap-2">
+                        <div class="phase-indicator w-3 h-3 rounded-full bg-red-400" data-phase="1"></div>
+                        <div class="phase-indicator w-3 h-3 rounded-full bg-amber-400" data-phase="2"></div>
+                        <div class="phase-indicator w-3 h-3 rounded-full bg-teal-400" data-phase="3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+    </div>
+</section>
+
+<script>
+// Particle System
+class ParticleSystem {
+    constructor(canvasId) {
+        this.canvas = document.getElementById(canvasId);
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.phase = 1;
+        this.resize();
+        this.init();
+        this.animate();
+        
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    init() {
+        const particleCount = window.innerWidth < 768 ? 50 : 100;
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                radius: Math.random() * 2 + 1,
+                color: this.getPhaseColor(),
+                targetX: 0,
+                targetY: 0,
+                organized: false
+            });
+        }
+    }
+
+    getPhaseColor() {
+        const colors = {
+            1: '#ef4444', // Red for chaos
+            2: '#f59e0b', // Amber for processing
+            3: '#14b8a6'  // Teal for clarity
+        };
+        return colors[this.phase];
+    }
+
+    setPhase(phase) {
+        this.phase = phase;
+        this.particles.forEach(p => {
+            p.color = this.getPhaseColor();
+            if (phase === 3) {
+                // Organize particles into grid pattern
+                const gridX = (p.x / this.canvas.width) * 10;
+                const gridY = (p.y / this.canvas.height) * 10;
+                p.targetX = Math.floor(gridX) * (this.canvas.width / 10) + (this.canvas.width / 20);
+                p.targetY = Math.floor(gridY) * (this.canvas.height / 10) + (this.canvas.height / 20);
+                p.organized = true;
+            } else {
+                p.organized = false;
+            }
+        });
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.particles.forEach(particle => {
+            if (particle.organized && this.phase === 3) {
+                // Move towards target
+                particle.x += (particle.targetX - particle.x) * 0.05;
+                particle.y += (particle.targetY - particle.y) * 0.05;
+            } else {
+                // Random movement
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                // Bounce off edges
+                if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+            }
+
+            // Draw particle
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            this.ctx.fillStyle = particle.color;
+            this.ctx.globalAlpha = 0.6;
+            this.ctx.fill();
+            this.ctx.globalAlpha = 1;
+
+            // Draw connections in phase 3
+            if (this.phase === 3) {
+                this.particles.forEach(other => {
+                    const dx = particle.x - other.x;
+                    const dy = particle.y - other.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100 && particle !== other) {
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(particle.x, particle.y);
+                        this.ctx.lineTo(other.x, other.y);
+                        this.ctx.strokeStyle = particle.color;
+                        this.ctx.globalAlpha = 0.2;
+                        this.ctx.lineWidth = 0.5;
+                        this.ctx.stroke();
+                        this.ctx.globalAlpha = 1;
+                    }
+                });
+            }
+        });
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// SVG Animation Controller
+class TransformationAnimation {
+    constructor() {
+        this.currentPhase = 1;
+        this.isAnimating = false;
+        this.particleSystem = new ParticleSystem('particleCanvas');
+        this.init();
+    }
+
+    init() {
+        // Auto-play animation sequence
+        this.startSequence();
+        
+        // Also trigger on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !this.isAnimating) {
+                    this.startSequence();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const svg = document.getElementById('transformationSvg');
+        if (svg) observer.observe(svg);
+    }
+
+    async startSequence() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        // Phase 1: Chaos (3 seconds)
+        await this.animatePhase1();
+        await this.wait(3000);
+
+        // Phase 2: Processing (3 seconds)
+        await this.animatePhase2();
+        await this.wait(3000);
+
+        // Phase 3: Clarity (infinite)
+        await this.animatePhase3();
+        
+        this.isAnimating = false;
+
+        // Loop animation
+        setTimeout(() => this.startSequence(), 5000);
+    }
+
+    async animatePhase1() {
+        this.currentPhase = 1;
+        this.particleSystem.setPhase(1);
+        this.updatePhaseIndicators(1);
+
+        // Animate chaos threads
+        const chaosThreads = document.querySelectorAll('.chaos-thread');
+        const chaosNodes = document.querySelectorAll('.chaos-node');
+
+        // Fade in chaos
+        document.getElementById('chaosGroup').style.transition = 'opacity 1s';
+        document.getElementById('chaosGroup').style.opacity = '1';
+        document.getElementById('processGroup').style.opacity = '0';
+        document.getElementById('clarityGroup').style.opacity = '0';
+
+        // Animate threads with wobble
+        chaosThreads.forEach((thread, i) => {
+            thread.style.animation = `wobble 2s ease-in-out infinite ${i * 0.2}s`;
+        });
+
+        // Animate nodes
+        chaosNodes.forEach((node, i) => {
+            node.style.animation = `pulse 1.5s ease-in-out infinite ${i * 0.3}s`;
+        });
+    }
+
+    async animatePhase2() {
+        this.currentPhase = 2;
+        this.particleSystem.setPhase(2);
+        this.updatePhaseIndicators(2);
+
+        // Transition to processing
+        document.getElementById('chaosGroup').style.opacity = '0';
+        document.getElementById('processGroup').style.transition = 'opacity 1s';
+        document.getElementById('processGroup').style.opacity = '1';
+
+        // Animate scan line
+        const scanLine = document.getElementById('scanLine');
+        scanLine.style.transition = 'transform 2s linear';
+        scanLine.style.transform = 'translateX(300px)';
+
+        // Animate process nodes
+        const processNodes = document.querySelectorAll('.process-node');
+        processNodes.forEach((node, i) => {
+            node.style.animation = `pulse 1s ease-in-out infinite ${i * 0.2}s`;
+        });
+    }
+
+    async animatePhase3() {
+        this.currentPhase = 3;
+        this.particleSystem.setPhase(3);
+        this.updatePhaseIndicators(3);
+
+        // Transition to clarity
+        document.getElementById('processGroup').style.opacity = '0';
+        document.getElementById('clarityGroup').style.transition = 'opacity 1s';
+        document.getElementById('clarityGroup').style.opacity = '1';
+
+        // Animate dashboard cards
+        const cards = document.querySelectorAll('.dashboard-card');
+        cards.forEach((card, i) => {
+            card.style.animation = `fadeInUp 0.5s ease-out ${i * 0.1}s forwards`;
+        });
+
+        // Animate chart bars
+        const bars = document.querySelectorAll('.chart-bar');
+        bars.forEach((bar, i) => {
+            setTimeout(() => {
+                bar.style.opacity = '1';
+                bar.style.transition = 'opacity 0.3s';
+            }, 500 + i * 100);
+        });
+
+        // Animate data flow
+        const flows = document.querySelectorAll('.data-flow');
+        flows.forEach((flow, i) => {
+            flow.style.animation = `dash 2s linear infinite ${i * 0.3}s`;
+        });
+
+        // Show status text
+        const statusText = document.getElementById('statusText');
+        statusText.style.transition = 'opacity 1s';
+        statusText.style.opacity = '1';
+    }
+
+    updatePhaseIndicators(phase) {
+        const indicators = document.querySelectorAll('.phase-indicator');
+        indicators.forEach((ind, i) => {
+            if (i + 1 === phase) {
+                ind.style.transform = 'scale(1.5)';
+                ind.style.boxShadow = '0 0 10px currentColor';
+            } else {
+                ind.style.transform = 'scale(1)';
+                ind.style.boxShadow = 'none';
+            }
+        });
+    }
+
+    wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+}
+
+// Initialize animation when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new TransformationAnimation();
+});
+
+// CSS Animations (add to your Tailwind config or inline styles)
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes wobble {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(5px, -5px) rotate(2deg); }
+        50% { transform: translate(-5px, 5px) rotate(-2deg); }
+        75% { transform: translate(5px, 5px) rotate(1deg); }
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 0.3;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes dash {
+        to {
+            stroke-dashoffset: -20;
+        }
+    }
+
+    .phase-indicator {
+        transition: all 0.3s ease;
+    }
+`;
+document.head.appendChild(style);
+</script>

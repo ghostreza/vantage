@@ -1,0 +1,669 @@
+/* ============================================
+   ANIMATIONS.CSS - Vantage Solutions
+   Advanced Contextual Animations
+   ============================================ */
+
+/* === KEYFRAMES - PROBLEM SECTION === */
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-5deg); }
+    20%, 40%, 60%, 80% { transform: rotate(5deg); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes underlineExpand {
+    from { width: 0; }
+    to { width: 80%; }
+}
+
+/* === KEYFRAMES - SERVICES SECTION === */
+
+@keyframes morphIcon {
+    0% { transform: scale(0.5) rotate(-180deg); opacity: 0; }
+    50% { transform: scale(1.1) rotate(10deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes cascadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes flipIn {
+    from { transform: perspective(400px) rotateY(90deg); opacity: 0; }
+    to { transform: perspective(400px) rotateY(0deg); opacity: 1; }
+}
+
+@keyframes drawCheck {
+    from { stroke-dashoffset: 100; }
+    to { stroke-dashoffset: 0; }
+}
+
+/* === KEYFRAMES - CASES SECTION === */
+
+@keyframes blurToClear {
+    from { filter: blur(10px); opacity: 0; }
+    to { filter: blur(0); opacity: 1; }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 5px rgba(95, 201, 184, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(95, 201, 184, 0.8); }
+}
+
+@keyframes progressFill {
+    from { width: 0; }
+}
+
+/* === KEYFRAMES - PRICING SECTION === */
+
+@keyframes slideIn3D {
+    from { transform: perspective(1000px) rotateY(-30deg) translateX(-100px); opacity: 0; }
+    to { transform: perspective(1000px) rotateY(0deg) translateX(0); opacity: 1; }
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 10px rgba(95, 201, 184, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(95, 201, 184, 1); }
+}
+
+/* === KEYFRAMES - GENERAL === */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes floatDelayed {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* === INITIAL STATES === */
+
+[data-animate] {
+    opacity: 0;
+}
+
+/* === PROBLEM SECTION ANIMATIONS === */
+
+[data-animate="problem-badge"] {
+    animation: slideDown 0.6s ease-out forwards;
+}
+
+[data-animate="problem-heading"] .heading-underline {
+    position: relative;
+    display: inline-block;
+}
+
+[data-animate="problem-heading"] .heading-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, #a7f3d0, #14b8a6);
+    border-radius: 2px;
+}
+
+[data-animate="problem-heading"].animated .heading-underline::after {
+    animation: underlineExpand 1s ease-out 0.5s forwards;
+}
+
+.problem-card {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.problem-card[data-animate="problem-card"] {
+    transform: translateY(50px) scale(0.95);
+}
+
+.problem-card.animated {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.problem-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #99f6e4;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.problem-card:hover .problem-icon {
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.problem-icon {
+    transition: all 0.3s ease;
+}
+
+.problem-card.animated .problem-icon {
+    animation: glitch 0.3s ease-in-out;
+}
+
+.problem-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(15, 23, 42, 0.05);
+    color: #0f172a;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.problem-card.animated .problem-number {
+    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s forwards;
+}
+
+.problem-card:hover .problem-number {
+    background: #ccfbf1;
+    color: #0f766e;
+    transform: scale(1.1);
+}
+
+.problem-title {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.problem-card.animated .problem-title {
+    animation: cascadeIn 0.5s ease-out 0.3s forwards;
+}
+
+.problem-desc {
+    opacity: 0;
+}
+
+.problem-card.animated .problem-desc {
+    animation: fadeInUp 0.5s ease-out 0.5s forwards;
+}
+
+.stat-line {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f3f4f6;
+    opacity: 0;
+}
+
+.problem-card.animated .stat-line {
+    animation: fadeInUp 0.5s ease-out 0.7s forwards;
+}
+
+/* Counter animation */
+.counter {
+    display: inline-block;
+}
+
+/* Noise background effect */
+.noise-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+/* === SERVICES SECTION ANIMATIONS === */
+
+.service-block {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.service-block.animated {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.service-icon {
+    opacity: 0;
+    transform: scale(0.5) rotate(-180deg);
+}
+
+.service-block.animated .service-icon {
+    animation: morphIcon 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.service-title {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.service-block.animated .service-title {
+    animation: cascadeIn 0.6s ease-out 0.3s forwards;
+}
+
+.service-desc {
+    opacity: 0;
+}
+
+.service-block.animated .service-desc {
+    animation: fadeInUp 0.6s ease-out 0.5s forwards;
+}
+
+.service-detail {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: cascadeIn 0.5s ease-out calc(var(--delay) + 600ms) forwards;
+}
+
+.checkmark {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.service-detail:hover .checkmark {
+    transform: scale(1.3) rotate(360deg);
+    color: #14b8a6;
+}
+
+.output-card {
+    opacity: 0;
+    transform: perspective(400px) rotateY(90deg);
+    animation: flipIn 0.6s ease-out calc(var(--delay) + 800ms) forwards;
+}
+
+.output-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* === CASES SECTION ANIMATIONS === */
+
+.case-card {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.case-card.animated {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.case-title {
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.case-card.animated .case-title {
+    animation: blurToClear 0.8s ease-out 0.3s forwards;
+}
+
+.case-before {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.case-card.animated .case-before {
+    animation: cascadeIn 0.6s ease-out 0.5s forwards;
+}
+
+.case-after {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.case-card.animated .case-after {
+    animation: cascadeIn 0.6s ease-out 0.7s forwards;
+}
+
+.case-card.animated .case-after {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #ef4444, #f97316);
+    border-radius: 3px;
+    width: 0;
+    transition: width 1.5s ease-out;
+}
+
+.progress-fill.success {
+    background: linear-gradient(to right, #14b8a6, #06b6d4);
+}
+
+.case-card.animated .progress-fill {
+    width: attr(data-progress);
+}
+
+/* === PRICING SECTION ANIMATIONS === */
+
+.pricing-card {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-30deg) translateX(-100px);
+}
+
+.pricing-card.animated {
+    animation: slideIn3D 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.pricing-card.popular {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+}
+
+.pricing-card.popular.animated {
+    animation: slideIn3D 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, glowPulse 2s ease-in-out infinite 1s;
+}
+
+.price-value {
+    opacity: 0;
+}
+
+.pricing-card.animated .price-value {
+    animation: countUp 0.6s ease-out 0.5s forwards;
+}
+
+.pricing-feature {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.pricing-card.animated .pricing-feature {
+    animation: cascadeIn 0.5s ease-out calc(0.7s + var(--i, 0) * 100ms) forwards;
+}
+
+.pricing-card.animated .pricing-feature:nth-child(1) { --i: 0; }
+.pricing-card.animated .pricing-feature:nth-child(2) { --i: 1; }
+.pricing-card.animated .pricing-feature:nth-child(3) { --i: 2; }
+.pricing-card.animated .pricing-feature:nth-child(4) { --i: 3; }
+.pricing-card.animated .pricing-feature:nth-child(5) { --i: 4; }
+
+.animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* === CONTACT SECTION ANIMATIONS === */
+
+.form-input {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+[data-animate="contact-section"].animated .form-input {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+[data-animate="contact-section"].animated .form-input:nth-child(1) { animation-delay: 0.3s; }
+[data-animate="contact-section"].animated .form-input:nth-child(2) { animation-delay: 0.4s; }
+[data-animate="contact-section"].animated .form-input:nth-child(3) { animation-delay: 0.5s; }
+[data-animate="contact-section"].animated .form-input:nth-child(4) { animation-delay: 0.6s; }
+
+/* === GENERAL ANIMATIONS === */
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+    animation: floatDelayed 8s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-up-delayed {
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.animate-bounce-in {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-glow {
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Typing effect */
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 3px solid #5FC9B8;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #5FC9B8; }
+}
+
+/* === CTA SECTION === */
+
+.cta-section {
+    opacity: 0;
+}
+
+.cta-section.animated {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+/* === HEADING UNDERLINE === */
+
+.heading-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.heading-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, #a7f3d0, #14b8a6);
+    border-radius: 2px;
+}
+
+.heading-underline.animated::after {
+    animation: underlineExpand 1s ease-out 0.5s forwards;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 768px) {
+    .pricing-card {
+        transform: perspective(1000px) rotateY(0deg) translateY(50px);
+    }
+    
+    .pricing-card.animated {
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+}
+
+/* === REDUCED MOTION === */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .typing-text {
+        border-right: none;
+        animation: none;
+        white-space: normal;
+    }
+}
+/* ============================================
+   ANIMATION.CSS
+   Animasi untuk section "Masalah yang Sering Muncul"
+   ============================================ */
+
+/* ===== Animasi Titik Jatuh Berantakan (Card 2) ===== */
+.scattered-dots {
+    color: #0d9488; /* teal */
+}
+
+.falling-dot {
+    opacity: 0.9;
+}
+
+.dot-1 { animation: fall-chaos 3s ease-in infinite; animation-delay: 0s; }
+.dot-2 { animation: fall-chaos 2.5s ease-in infinite; animation-delay: 0.3s; }
+.dot-3 { animation: fall-chaos 3.2s ease-in infinite; animation-delay: 0.6s; }
+.dot-4 { animation: fall-chaos 2.8s ease-in infinite; animation-delay: 0.15s; }
+.dot-5 { animation: fall-chaos 3.5s ease-in infinite; animation-delay: 0.45s; }
+.dot-6 { animation: fall-chaos 2.6s ease-in infinite; animation-delay: 0.75s; }
+.dot-7 { animation: fall-chaos 3.1s ease-in infinite; animation-delay: 0.2s; }
+.dot-8 { animation: fall-chaos 2.9s ease-in infinite; animation-delay: 0.5s; }
+
+@keyframes fall-chaos {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    20% {
+        transform: translateY(10px) translateX(-8px) rotate(45deg);
+        opacity: 0.9;
+    }
+    40% {
+        transform: translateY(25px) translateX(12px) rotate(-30deg);
+        opacity: 0.8;
+    }
+    60% {
+        transform: translateY(40px) translateX(-5px) rotate(60deg);
+        opacity: 0.6;
+    }
+    80% {
+        transform: translateY(55px) translateX(8px) rotate(-45deg);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(75px) translateX(-3px) rotate(90deg);
+        opacity: 0;
+    }
+}
+
+/* ===== Animasi Siklus Berputar → Merah (Card 3) ===== */
+.cycle-spin {
+    color: #0d9488; /* teal awal */
+    animation: 
+        spin-cycle 2s linear infinite,
+        color-shift 6s ease-in-out infinite;
+}
+
+.cycle-path {
+    stroke: currentColor;
+}
+
+@keyframes spin-cycle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes color-shift {
+    0% {
+        color: #0d9488; /* teal */
+    }
+    30% {
+        color: #0d9488; /* tetap teal */
+    }
+    50% {
+        color: #f59e0b; /* kuning/amber - transisi */
+    }
+    70% {
+        color: #ef4444; /* merah - warning */
+    }
+    85% {
+        color: #ef4444; /* tetap merah */
+    }
+    100% {
+        color: #0d9488; /* kembali ke teal */
+    }
+}
+
+/* ===== Jam Analog (Card 1) ===== */
+.clock-hour,
+.clock-minute,
+.clock-second {
+    transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+.clock-second {
+    transition: none; /* detik bergerak smooth tanpa delay */
+}

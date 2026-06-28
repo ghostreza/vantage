@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vantage Solutions — Data, Engineering & Automation untuk Bisnis Anda</title>
+    <meta name="description" content="Layanan freelance Data Analytics, Data Engineering, dan Process Automation untuk UMKM, bisnis menengah, dan mahasiswa.">
+    
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: '#13293D',
+                        teal: '#1F6F78',
+                        mint: '#5FC9B8',
+                        soft: '#F4F9F9'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased">
+
+<!-- ===== HEADER ===== -->
+<header class="bg-gradient-to-r from-navy to-teal text-white py-4 px-6 flex items-center justify-between sticky top-0 z-40 shadow-lg backdrop-blur-sm bg-opacity-90">
+    <a href="#" class="font-bold text-xl tracking-tight">Vantage<span class="text-mint">.</span>Solutions</a>
+    <nav class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#services" class="hover:text-mint transition-colors">Layanan</a>
+        <a href="#cases" class="hover:text-mint transition-colors">Studi Kasus</a>
+        <a href="#pricing" class="hover:text-mint transition-colors">Harga</a>
+        <a href="#contact" class="hover:text-mint transition-colors">Kontak</a>
+    </nav>
+    <a href="#contact" class="bg-gradient-to-r from-mint to-teal text-white font-semibold py-2 px-5 rounded-full text-sm hover:from-teal hover:to-mint transition-all hidden md:inline-block shadow-md">
+        Konsultasi Gratis →
+    </a>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section relative bg-gradient-to-br from-navy via-[#0f2a3f] to-teal text-white py-28 px-6 overflow-hidden min-h-screen flex items-center">
+    
+    <!-- 1. Grid Pattern Overlay -->
+    <div class="absolute inset-0 grid-pattern opacity-40 pointer-events-none"></div>
+    
+    <!-- 2. Floating Blobs (Background) -->
+    <div class="absolute top-0 left-0 w-full h-full opacity-15 pointer-events-none">
+        <div class="absolute top-10 left-10 w-72 h-72 bg-mint rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-teal rounded-full blur-3xl animate-float-delayed"></div>
+        <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-400 rounded-full blur-3xl animate-float" style="animation-delay: -7s;"></div>
+    </div>
+    
+    <!-- 3. Main Content -->
+    <div class="max-w-4xl mx-auto text-center relative z-10 w-full">
+        
+        <!-- Brand Badge -->
+        <div class="animate-slide-down mb-8">
+            <p class="inline-flex items-center gap-2 text-mint text-sm font-semibold tracking-widest uppercase px-4 py-2 border border-mint/30 rounded-full bg-mint/5 backdrop-blur-sm">
+                <span class="w-2 h-2 bg-mint rounded-full animate-pulse"></span>
+                Vantage Solutions
+            </p>
+        </div>
+        
+        <!-- Heading dengan Typing Effect -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+            <!-- Class 'typing-text' dan 'data-text' akan dibaca oleh animation.js -->
+            <span class="typing-text block md:inline mb-2 md:mb-0" data-text="Data mentah & proses manual">Data mentah & proses manual</span>
+            <br class="hidden md:block">
+            <span class="bg-gradient-to-r from-mint via-teal to-cyan-300 bg-clip-text text-transparent animate-glow">
+                memperlambat bisnis Anda.
+            </span>
+        </h1>
+        
+        <!-- Subheading -->
+        <p class="lead text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up">
+            Kami rapikan data, bangun sistem otomatis, dan berikan 
+            <span class="text-mint font-semibold">laporan siap pakai</span> — tanpa Anda harus pusing belajar teknis.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up-delayed">
+            <a href="#services" 
+               class="btn-shine bg-gradient-to-r from-mint to-teal text-navy font-bold py-4 px-8 rounded-full hover:from-teal hover:to-mint transition-all duration-300 text-lg shadow-lg shadow-teal/30 hover:shadow-2xl hover:shadow-teal/50 hover:scale-105 transform inline-flex items-center justify-center gap-2">
+                Lihat Layanan Kami 
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            
+            <a href="https://wa.me/628xxxxxx?text=Halo%20Vantage%20Solutions%2C%20saya%20mau%20tanya%20soal%20layanan" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn-shine border-2 border-mint text-mint font-semibold py-4 px-8 rounded-full hover:bg-mint hover:text-navy transition-all duration-300 text-lg hover:scale-105 transform backdrop-blur-sm inline-flex items-center justify-center gap-2">
+                💬 Tanya via WhatsApp
+            </a>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="mt-12 animate-fade-in">
+            <p class="text-gray-300 text-sm flex flex-wrap justify-center items-center gap-x-6 gap-y-3">
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Konsultasi gratis
+                </span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Estimasi 1x24 jam
+                </span>
+                <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-mint" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    Tanpa komitmen
+                </span>
+            </p>
+        </div>
+
+    </div>
+
+    <!-- 4. Scroll Indicator (Opsional, di bagian paling bawah) -->
+    <div class="scroll-indicator hidden md:block">
+        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+    </div>
+
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="py-20 px-6 bg-gradient-to-b from-white via-soft to-white overflow-hidden relative">
+    <!-- Background noise effect -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div class="noise-bg"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        
+        <!-- Badge -->
+        <div data-animate="problem-badge">
+            <p class="inline-block text-teal font-semibold text-sm tracking-widest uppercase mb-3 px-4 py-1 bg-teal/5 rounded-full">
+                Masalah yang Sering Muncul
+            </p>
+        </div>
+        
+        <!-- Heading -->
+        <div class="mb-12" data-animate="problem-heading">
+            <h2 class="text-3xl md:text-4xl font-bold text-navy heading-underline">
+                Apakah ini terdengar familiar?
+            </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <!-- Card 1: Laporan Manual (JAM BERGERAK) -->
+            <div class="problem-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-left" 
+                 data-animate="problem-card" 
+                 data-delay="0">
+                <div class="problem-number">01</div>
+                
+                <!-- Jam Analog Bergerak Real-Time -->
+                <div class="w-14 h-14 bg-gradient-to-br from-mint/20 to-teal/20 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0 problem-icon">
+                    <svg class="w-10 h-10" viewBox="0 0 100 100">
+                        <!-- Lingkaran jam -->
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3" class="text-teal/30"/>
+                        
+                        <!-- Tick marks (penanda jam) -->
+                        <g class="text-teal" stroke="currentColor" stroke-width="2">
+                            <line x1="50" y1="10" x2="50" y2="16"/>
+                            <line x1="50" y1="84" x2="50" y2="90"/>
+                            <line x1="10" y1="50" x2="16" y2="50"/>
+                            <line x1="84" y1="50" x2="90" y2="50"/>
+                        </g>
+                        
+                        <!-- Jarum Jam (pendek, tebal) -->
+                        <line class="clock-hour" x1="50" y1="50" x2="50" y2="28" 
+                              stroke="currentColor" stroke-width="4" stroke-linecap="round" 
+                              style="transform-origin: 50px 50px;"/>
+                        
+                        <!-- Jarum Menit (sedang) -->
+                        <line class="clock-minute" x1="50" y1="50" x2="50" y2="20" 
+                              stroke="currentColor" stroke-width="3" stroke-linecap="round" 
+                              style="transform-origin: 50px 50px;"/>
+                        
+                        <!-- Jarum Detik (panjang, tipis, merah) -->
+                        <line class="clock-second" x1="50" y1="50" x2="50" y2="15" 
+                              stroke="#ef4444" stroke-width="1.5" stroke-linecap="round" 
+                              style="transform-origin: 50px 50px;"/>
+                        
+                        <!-- Titik tengah -->
+                        <circle cx="50" cy="50" r="3" fill="currentColor" class="text-teal"/>
+                    </svg>
+                </div>
+                
+                <h3 class="font-bold text-lg text-navy mb-3 problem-title">Laporan Lambat & Manual</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-4 problem-desc">Setiap hari/bulan habiskan waktu berjam-jam di Excel. Rekap manual, rawan human error, dan hasilnya sering telat sampai ke pemilik.</p>
+                
+                <div class="stat-line">
+                    <div class="flex items-center gap-2 text-xs text-teal font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <span class="counter" data-target="15">0</span>
+                        <span>jam/minggu terbuang</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 2: Data Terpencar (TITIK JATUH BERANTAKAN) -->
+            <div class="problem-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-left" 
+                 data-animate="problem-card" 
+                 data-delay="200">
+                <div class="problem-number">02</div>
+                
+                <!-- Titik Jatuh Berantakan -->
+                <div class="w-14 h-14 bg-gradient-to-br from-mint/20 to-teal/20 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0 problem-icon overflow-hidden relative">
+                    <svg class="w-10 h-10 scattered-dots" viewBox="0 0 100 100">
+                        <circle class="falling-dot dot-1" cx="20" cy="20" r="5" fill="currentColor"/>
+                        <circle class="falling-dot dot-2" cx="50" cy="15" r="4" fill="currentColor"/>
+                        <circle class="falling-dot dot-3" cx="80" cy="25" r="6" fill="currentColor"/>
+                        <circle class="falling-dot dot-4" cx="35" cy="30" r="3.5" fill="currentColor"/>
+                        <circle class="falling-dot dot-5" cx="65" cy="10" r="4.5" fill="currentColor"/>
+                        <circle class="falling-dot dot-6" cx="15" cy="40" r="3" fill="currentColor"/>
+                        <circle class="falling-dot dot-7" cx="85" cy="35" r="5" fill="currentColor"/>
+                        <circle class="falling-dot dot-8" cx="45" cy="45" r="4" fill="currentColor"/>
+                    </svg>
+                </div>
+                
+                <h3 class="font-bold text-lg text-navy mb-3 problem-title">Data Terpencar</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-4 problem-desc">Data penjualan di marketplace, stok di Excel, keuangan di software akuntansi — tidak terhubung, sulit lihat gambaran utuh bisnis.</p>
+                
+                <div class="stat-line">
+                    <div class="flex items-center gap-2 text-xs text-teal font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                        </svg>
+                        <span class="counter" data-target="5">0</span>
+                        <span>sumber data tidak terintegrasi</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Card 3: Proses Manual (SIKLUS BERPUTAR → MERAH) -->
+            <div class="problem-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-left" 
+                 data-animate="problem-card" 
+                 data-delay="400">
+                <div class="problem-number">03</div>
+                
+                <!-- Siklus Berputar Berubah Merah -->
+                <div class="w-14 h-14 bg-gradient-to-br from-mint/20 to-teal/20 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0 problem-icon">
+                    <svg class="w-8 h-8 cycle-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path class="cycle-path" stroke-linecap="round" stroke-linejoin="round" 
+                              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                </div>
+                
+                <h3 class="font-bold text-lg text-navy mb-3 problem-title">Proses Berulang Manual</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-4 problem-desc">Kirim laporan, update status, cek notifikasi — semua dikerjakan manual tiap hari. Tim habis waktu untuk tugas administratif, bukan strategi.</p>
+                
+                <div class="stat-line">
+                    <div class="flex items-center gap-2 text-xs text-teal font-semibold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                        </svg>
+                        <span class="counter" data-target="80">0</span>
+                        <span>% waktu untuk tugas repetitif</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- CTA subtle -->
+        <div class="mt-12 cta-section" data-animate="cta" data-delay="600">
+            <p class="text-gray-500 text-sm">
+                Jika Anda mengalami salah satu masalah di atas, 
+                <a href="#solutions" class="text-teal font-semibold hover:underline">kami punya solusinya →</a>
+            </p>
+        </div>
+        
+    </div>
+</section>
+<!-- ===== SERVICES ===== -->
+<section id="services" class="py-20 px-6 bg-white">
+    <div class="max-w-5xl mx-auto">
+        <div data-animate="services-heading">
+            <p class="text-teal font-semibold text-sm tracking-widest uppercase text-center mb-3">Layanan</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-16">Yang Kami Kerjakan</h2>
+        </div>
+        
+        <div class="space-y-16">
+            {% for s in services %}
+            <div class="service-block flex flex-col md:flex-row gap-10 items-start {% if loop.index % 2 == 0 %}md:flex-row-reverse{% endif %}" 
+                 data-animate="service-block" 
+                 data-delay="{{ loop.index0 * 150 }}">
+                <div class="md:w-1/2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-2xl flex items-center justify-center mb-6 shadow-md service-icon">
+                        {{ s.icon | safe }}
+                    </div>
+                    <h3 class="text-2xl font-bold text-navy mb-4 service-title">{{ s.title }}</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6 service-desc">{{ s.desc }}</p>
+                    <ul class="space-y-3">
+                        {% for d in s.details %}
+                        <li class="flex items-start gap-3 text-sm text-gray-700 service-detail" style="--delay: {{ loop.index0 * 100 }}ms">
+                            <span class="text-mint font-bold mt-0.5 checkmark">✓</span>
+                            <span>{{ d }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="md:w-1/2 bg-gradient-to-br from-soft to-white rounded-2xl p-8 w-full border border-gray-100 shadow-sm">
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Output yang Anda terima</p>
+                    <ul class="space-y-3">
+                        {% if s.id == 'analytics' %}
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">📊 Dashboard interaktif (web-based, akses dari HP)</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">📄 Laporan analisis siap presentasi (PDF/PPT)</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📈 Insight tertulis: "apa artinya untuk bisnis Anda"</li>
+                        {% elif s.id == 'engineering' %}
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">🔗 Pipeline data berjalan otomatis</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">🗄️ Database terstruktur & terdokumentasi</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📋 Panduan akses & maintenance sederhana</li>
+                        {% else %}
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">🤖 Bot siap pakai di WhatsApp/Telegram</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">⚡ Proses otomatis jalan terjadwal</li>
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📘 Panduan penggunaan & troubleshooting</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {% if not loop.last %}<hr class="my-8 border-gray-100">{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ===== TRACK RECORD ===== -->
+<section id="cases" class="py-20 px-6 bg-gradient-to-br from-navy to-teal text-white">
+    <div class="max-w-4xl mx-auto">
+        <div data-animate="cases-heading">
+            <p class="text-mint font-semibold text-sm tracking-widest uppercase text-center mb-3">Studi Kasus</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Hasil Nyata, Bukan Janji</h2>
+        </div>
+        <div class="space-y-12">
+            {% for c in cases %}
+            <div class="case-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-mint/50 transition-all"
+                 data-animate="case-card"
+                 data-delay="{{ loop.index0 * 200 }}">
+                <h3 class="text-xl font-bold mb-6 text-mint case-title">{{ c.title }}</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="case-before">
+                        <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sebelum</p>
+                        <p class="text-gray-300 text-sm leading-relaxed">{{ c.before }}</p>
+                        <div class="progress-bar mt-4">
+                            <div class="progress-fill" data-progress="30"></div>
+                        </div>
+                    </div>
+                    <div class="case-after">
+                        <p class="text-xs text-mint uppercase tracking-widest mb-2">Sesudah</p>
+                        <p class="text-white text-sm leading-relaxed">{{ c.after }}</p>
+                        <div class="progress-bar mt-4">
+                            <div class="progress-fill success" data-progress="95"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="py-20 px-6 bg-gradient-to-b from-soft to-white">
+    <div class="max-w-5xl mx-auto">
+        <div data-animate="pricing-heading">
+            <p class="text-teal font-semibold text-sm tracking-widest uppercase text-center mb-3">Paket Harga</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">Investasi yang Sesuai Kebutuhan</h2>
+            <p class="text-gray-500 text-center mb-12 max-w-xl mx-auto">Semua paket sudah termasuk konsultasi awal, pengerjaan, revisi, dan panduan penggunaan. Tidak ada biaya tersembunyi.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Starter -->
+            <div class="pricing-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow"
+                 data-animate="pricing-card"
+                 data-delay="0">
+                <h3 class="text-lg font-bold text-navy">Starter</h3>
+                <p class="text-sm text-gray-500 mt-1">Untuk mahasiswa & proyek kecil</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="400">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-400">per proyek</p>
+                <hr class="my-6 border-gray-100">
+                <ul class="space-y-3 text-sm text-gray-700 flex-1">
+                    <li class="pricing-feature">✓ Data cleaning & formatting</li>
+                    <li class="pricing-feature">✓ Visualisasi data (grafik, chart)</li>
+                    <li class="pricing-feature">✓ 1x revisi</li>
+                    <li class="pricing-feature">✓ File siap pakai (Excel/PDF)</li>
+                </ul>
+                <a href="https://wa.me/628xxxxxx?text=Halo%2C%20saya%20mau%20tanya%20paket%20Starter" target="_blank" class="block text-center bg-gradient-to-r from-navy to-teal text-white py-3 rounded-full mt-8 hover:from-teal hover:to-navy transition-all font-semibold text-sm">
+                    Pilih Starter
+                </a>
+            </div>
+
+            <!-- Growth (populer) -->
+            <div class="pricing-card popular bg-gradient-to-br from-white to-mint/10 p-8 rounded-2xl shadow-lg border-2 border-mint flex flex-col relative scale-[1.02] hover:scale-[1.03] transition-transform"
+                 data-animate="pricing-card"
+                 data-delay="150">
+                <span class="absolute -top-3 right-6 bg-gradient-to-r from-mint to-teal text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-pulse-glow">PALING POPULER</span>
+                <h3 class="text-lg font-bold text-navy">Growth</h3>
+                <p class="text-sm text-gray-500 mt-1">Untuk bisnis menengah</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="2500">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-400">per proyek</p>
+                <hr class="my-6 border-gray-100">
+                <ul class="space-y-3 text-sm text-gray-700 flex-1">
+                    <li class="pricing-feature">✓ Dashboard otomatis interaktif</li>
+                    <li class="pricing-feature">✓ Integrasi data (API, database)</li>
+                    <li class="pricing-feature">✓ Automasi laporan rutin</li>
+                    <li class="pricing-feature">✓ 2x revisi</li>
+                    <li class="pricing-feature">✓ Support 30 hari setelah delivery</li>
+                </ul>
+                <a href="https://wa.me/628xxxxxx?text=Halo%2C%20saya%20mau%20tanya%20paket%20Growth" target="_blank" class="block text-center bg-gradient-to-r from-mint to-teal text-white font-bold py-3 rounded-full mt-8 hover:from-teal hover:to-mint transition-all text-sm shadow-md">
+                    Pilih Growth
+                </a>
+            </div>
+
+            <!-- Scale -->
+            <div class="pricing-card bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow"
+                 data-animate="pricing-card"
+                 data-delay="300">
+                <h3 class="text-lg font-bold text-navy">Scale</h3>
+                <p class="text-sm text-gray-500 mt-1">Sistem end-to-end</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="6000">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-400">per proyek</p>
+                <hr class="my-6 border-gray-100">
+                <ul class="space-y-3 text-sm text-gray-700 flex-1">
+                    <li class="pricing-feature">✓ Semua di Growth</li>
+                    <li class="pricing-feature">✓ Bot WhatsApp/Telegram custom</li>
+                    <li class="pricing-feature">✓ Web app ringan</li>
+                    <li class="pricing-feature">✓ Pendampingan penuh 3 bulan</li>
+                    <li class="pricing-feature">✓ Garansi bug fix 1 bulan</li>
+                </ul>
+                <a href="https://wa.me/628xxxxxx?text=Halo%2C%20saya%20mau%20diskusi%20paket%20Scale" target="_blank" class="block text-center bg-gradient-to-r from-navy to-teal text-white py-3 rounded-full mt-8 hover:from-teal hover:to-navy transition-all font-semibold text-sm">
+                    Diskusi Kebutuhan
+                </a>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-400 text-xs mt-8">*Harga dapat disesuaikan dengan kompleksitas dan scope proyek. Estimasi pasti setelah konsultasi awal.</p>
+    </div>
+</section>
+
+<!-- ===== BACKGROUND SINGKAT ===== -->
+<section class="py-10 px-6 bg-gradient-to-r from-soft to-white border-t border-gray-100">
+    <div class="max-w-3xl mx-auto text-center" data-animate="fade-in">
+        <p class="text-gray-400 text-xs tracking-widest uppercase mb-2">Tentang Founder</p>
+        <p class="text-gray-500 text-sm">Lulusan Informatika dengan pengalaman 2+ tahun membantu UMKM, koperasi, distributor, dan mahasiswa di berbagai sektor — mengubah data mentah jadi insight dan proses otomatis yang berdampak.</p>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="py-24 px-6 bg-gradient-to-br from-navy to-teal text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-mint/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl animate-float-delayed"></div>
+    <div class="max-w-2xl mx-auto text-center relative z-10" data-animate="contact-section">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Bekerja Sama?</h2>
+        <p class="text-gray-200 mb-10 leading-relaxed">Ceritakan kebutuhan atau masalah data Anda. Kami akan berikan masukan awal dan estimasi biaya — gratis, tanpa komitmen.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="https://wa.me/628xxxxxx?text=Halo%20Vantage%20Solutions%2C%20saya%20ingin%20konsultasi" target="_blank" class="bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-8 rounded-full transition-all flex items-center justify-center gap-2 text-lg shadow-lg hover:scale-105 transform">
+                <span>💬</span> WhatsApp Langsung
+            </a>
+            <a href="mailto:hello@vantagesolutions.id" class="border-2 border-mint text-mint font-semibold py-4 px-8 rounded-full hover:bg-mint hover:text-navy transition-all text-lg hover:scale-105 transform">
+                ✉️ Email Kami
+            </a>
+        </div>
+        <p class="text-gray-400 text-xs mt-8">Atau isi form di bawah (akan kami balas 1x24 jam):</p>
+        <form class="mt-6 max-w-md mx-auto space-y-4" action="#" method="POST">
+            <input type="text" placeholder="Nama Anda" class="form-input w-full px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm">
+            <input type="text" placeholder="No. WhatsApp atau Email" class="form-input w-full px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm">
+            <textarea rows="3" placeholder="Ceritakan singkat kebutuhan Anda..." class="form-input w-full px-5 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm"></textarea>
+            <button type="submit" class="w-full bg-gradient-to-r from-mint to-teal text-white font-bold py-3 rounded-full hover:from-teal hover:to-mint transition-all shadow-md hover:scale-105 transform">Kirim Pesan</button>
+        </form>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-navy border-t border-white/10 py-8 px-6 text-center text-gray-400 text-xs">
+    <p>© 2024 Vantage Solutions. Dibangun dengan standar profesional, hasil untuk bisnis Anda.</p>
+</footer>
+
+<!-- ===== CHAT WIDGET ===== -->
+<div id="chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div id="chat-box" class="hidden w-80 sm:w-96 h-[450px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden mb-4 transition-all">
+        <div class="bg-gradient-to-r from-navy to-teal text-white p-4 flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-mint to-teal rounded-full flex items-center justify-center text-white font-bold text-sm">VS</div>
+                <div>
+                    <h4 class="font-semibold text-sm">Asisten Vantage</h4>
+                    <p class="text-xs text-gray-300">AI Assistant • balas < 1 menit</p>
+                </div>
+            </div>
+            <button id="close-chat" class="text-white hover:text-mint text-2xl leading-none transition-colors">&times;</button>
+        </div>
+        <div id="chat-messages" class="flex-1 p-4 space-y-4 overflow-y-auto bg-gradient-to-b from-soft to-white">
+            <div class="flex gap-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-mint to-teal rounded-full flex items-center justify-center text-white text-xs shrink-0">VS</div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm text-sm text-gray-700 max-w-[80%]">
+                    👋 Halo! Saya asisten AI Vantage Solutions. Ada yang bisa saya bantu seputar layanan kami? Bisa tanya soal:
+                    <ul class="mt-2 space-y-1 text-xs text-gray-500">
+                        <li>• Jenis layanan yang cocok</li>
+                        <li>• Estimasi harga</li>
+                        <li>• Proses kerja sama</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-gray-100 flex gap-2 shrink-0 bg-white">
+            <input id="chat-input" type="text" placeholder="Ketik pesan..." class="flex-1 border border-gray-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-mint focus:border-transparent">
+            <button id="send-chat" class="bg-gradient-to-r from-mint to-teal text-white w-10 h-10 rounded-full flex items-center justify-center hover:from-teal hover:to-mint transition-all shrink-0 shadow">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+    </div>
+    <button id="toggle-chat" class="bg-gradient-to-r from-mint to-teal text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:from-teal hover:to-mint transition-all relative animate-bounce-in">
+        <svg id="chat-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+    </button>
+</div>
+
+<!-- Scripts -->
+<script src="/static/js/animations.js"></script>
+<script src="/static/js/chat.js"></script>
+</body>
+</html>

@@ -77,18 +77,14 @@
         
         <!-- Heading dengan Typing Effect -->
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-            <!-- Class 'typing-text' dan 'data-text' akan dibaca oleh animation.js -->
-            <span class="typing-text block md:inline mb-2 md:mb-0" data-text="Data mentah & proses manual">Data mentah & proses manual</span>
-            <br class="hidden md:block">
-            <span class="bg-gradient-to-r from-mint via-teal to-cyan-300 bg-clip-text text-transparent animate-glow">
-                memperlambat bisnis Anda.
-            </span>
+            <span id="typing-hero" class="block"></span>
         </h1>
         
         <!-- Subheading -->
         <p class="lead text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up">
-            Kami rapikan data, bangun sistem otomatis, dan berikan 
-            <span class="text-mint font-semibold">laporan siap pakai</span> — tanpa Anda harus pusing belajar teknis.
+            Kami ambil alih proses data yang membosankan — 
+            <span class="text-mint font-semibold">rekap, validasi, reporting</span> — 
+            lalu kembalikan waktu tim Anda untuk hal yang benar-benar menghasilkan.
         </p>
         
         <!-- CTA Buttons -->
@@ -126,6 +122,8 @@
         </div>
 
     </div>
+
+</section>
 
     <!-- 4. Scroll Indicator (Opsional, di bagian paling bawah) -->
     <div class="scroll-indicator hidden md:block">
@@ -349,27 +347,52 @@
             <p class="text-mint font-semibold text-sm tracking-widest uppercase text-center mb-3">Studi Kasus</p>
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Hasil Nyata, Bukan Janji</h2>
         </div>
+        
         <div class="space-y-12">
+            {# Pastikan data-delay ada DI DALAM loop ini #}
             {% for c in cases %}
-            <div class="case-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-mint/50 transition-all"
+            <div class="case-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-mint/50 transition-all cursor-pointer"
                  data-animate="case-card"
-                 data-delay="{{ loop.index0 * 200 }}">
+                 data-delay="{{ loop.index0 * 200 }}"
+                 onclick="toggleCaseDetail(this)">
+                
                 <h3 class="text-xl font-bold mb-6 text-mint case-title">{{ c.title }}</h3>
+                
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="case-before">
                         <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sebelum</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">{{ c.before }}</p>
+                        <p class="text-gray-300 text-sm leading-relaxed">{{ c.before[:100] }}...</p>
                         <div class="progress-bar mt-4">
                             <div class="progress-fill" data-progress="30"></div>
                         </div>
                     </div>
                     <div class="case-after">
                         <p class="text-xs text-mint uppercase tracking-widest mb-2">Sesudah</p>
-                        <p class="text-white text-sm leading-relaxed">{{ c.after }}</p>
+                        <p class="text-white text-sm leading-relaxed">{{ c.after[:100] }}...</p>
                         <div class="progress-bar mt-4">
                             <div class="progress-fill success" data-progress="95"></div>
                         </div>
                     </div>
+                </div>
+
+                {# Detail tersembunyi #}
+                <div class="case-detail hidden mt-6 pt-6 border-t border-white/20">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sebelum (Detail)</p>
+                            <p class="text-gray-300 text-sm leading-relaxed">{{ c.before }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-mint uppercase tracking-widest mb-2">Sesudah (Detail)</p>
+                            <p class="text-white text-sm leading-relaxed">{{ c.after }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <span class="text-mint text-sm font-semibold">
+                        Klik untuk lihat detail <span class="arrow">↓</span>
+                    </span>
                 </div>
             </div>
             {% endfor %}
@@ -531,7 +554,20 @@
         <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
     </button>
 </div>
+<style>
+.typing-cursor {
+    display: inline;
+    color: #4FD1C5; /* warna mint/teal */
+    animation: blink 0.8s infinite;
+    font-weight: bold;
+    margin-left: 2px;
+}
 
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+</style>
 <!-- Scripts -->
 <script src="/static/js/animations.js"></script>
 <script src="/static/js/chat.js"></script>

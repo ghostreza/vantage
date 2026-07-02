@@ -667,3 +667,38 @@
 .clock-second {
     transition: none; /* detik bergerak smooth tanpa delay */
 }
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4FD1C5, #14B8A6);
+    border-radius: 3px;
+    width: 0%; /* Akan dianimasikan oleh JS */
+    transition: width 1.5s ease-out;
+}
+
+.progress-fill.success {
+    background: linear-gradient(90deg, #4FD1C5, #5EEAD4);
+    box-shadow: 0 0 10px rgba(79, 209, 197, 0.5);
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+}
+
+/* Smooth transition untuk card */
+.case-card {
+    transition: all 0.3s ease;
+}

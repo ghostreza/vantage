@@ -287,3 +287,73 @@ if (typeof module !== 'undefined' && module.exports) {
         init();
     }
 })();
+(function() {
+    const el = document.getElementById('typing-hero');
+    if (!el) return;
+    
+    const text = "Bayangkan tim Anda<br>bebas dari pekerjaan repetitif.";
+    let i = 0;
+    const speed = 60;
+    
+    function type() {
+        if (i <= text.length) {
+            el.innerHTML = text.substring(0, i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    window.addEventListener('load', () => {
+        setTimeout(type, 500);
+    });
+})();
+
+// ===== PROGRESS BAR ANIMATION =====
+(function() {
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBars = entry.target.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = '0%';
+                    bar.style.transition = 'width 1.5s ease-out';
+                    
+                    setTimeout(() => {
+                        bar.style.width = progress + '%';
+                    }, 100);
+                });
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    // Observe semua case card
+    document.querySelectorAll('.case-card').forEach(card => {
+        observer.observe(card);
+    });
+})();
+
+// ===== TOGGLE CASE DETAIL =====
+function toggleCaseDetail(card) {
+    const detail = card.querySelector('.case-detail');
+    const arrow = card.querySelector('.arrow');
+    
+    if (detail.classList.contains('hidden')) {
+        detail.classList.remove('hidden');
+        detail.classList.add('animate-fade-in');
+        arrow.textContent = '↑';
+        card.classList.add('border-mint/50');
+    } else {
+        detail.classList.add('hidden');
+        detail.classList.remove('animate-fade-in');
+        arrow.textContent = '↓';
+        card.classList.remove('border-mint/50');
+    }
+}

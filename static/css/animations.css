@@ -1,10 +1,13 @@
 /* ============================================
    ANIMATIONS.CSS - Vantage Solutions
-   Advanced Contextual Animations
+   Advanced Contextual Animations (Cleaned)
    ============================================ */
 
-/* === KEYFRAMES - PROBLEM SECTION === */
+/* ==========================================
+   KEYFRAMES
+   ========================================== */
 
+/* Problem Section */
 @keyframes glitch {
     0%, 100% { transform: translate(0); }
     20% { transform: translate(-2px, 2px); }
@@ -25,6 +28,7 @@
     100% { transform: scale(1); opacity: 1; }
 }
 
+/* General */
 @keyframes slideDown {
     from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -40,13 +44,17 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes underlineExpand {
     from { width: 0; }
     to { width: 80%; }
 }
 
-/* === KEYFRAMES - SERVICES SECTION === */
-
+/* Services Section */
 @keyframes morphIcon {
     0% { transform: scale(0.5) rotate(-180deg); opacity: 0; }
     50% { transform: scale(1.1) rotate(10deg); }
@@ -63,13 +71,7 @@
     to { transform: perspective(400px) rotateY(0deg); opacity: 1; }
 }
 
-@keyframes drawCheck {
-    from { stroke-dashoffset: 100; }
-    to { stroke-dashoffset: 0; }
-}
-
-/* === KEYFRAMES - CASES SECTION === */
-
+/* Cases Section */
 @keyframes blurToClear {
     from { filter: blur(10px); opacity: 0; }
     to { filter: blur(0); opacity: 1; }
@@ -80,12 +82,7 @@
     50% { box-shadow: 0 0 20px rgba(95, 201, 184, 0.8); }
 }
 
-@keyframes progressFill {
-    from { width: 0; }
-}
-
-/* === KEYFRAMES - PRICING SECTION === */
-
+/* Pricing Section */
 @keyframes slideIn3D {
     from { transform: perspective(1000px) rotateY(-30deg) translateX(-100px); opacity: 0; }
     to { transform: perspective(1000px) rotateY(0deg) translateX(0); opacity: 1; }
@@ -101,8 +98,7 @@
     50% { box-shadow: 0 0 30px rgba(95, 201, 184, 1); }
 }
 
-/* === KEYFRAMES - GENERAL === */
-
+/* Float & Bounce */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -120,13 +116,52 @@
     100% { transform: scale(1); }
 }
 
-/* === INITIAL STATES === */
+/* Problem Section Icons */
+@keyframes fall-chaos {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    20% { transform: translateY(10px) translateX(-8px) rotate(45deg); opacity: 0.9; }
+    40% { transform: translateY(25px) translateX(12px) rotate(-30deg); opacity: 0.8; }
+    60% { transform: translateY(40px) translateX(-5px) rotate(60deg); opacity: 0.6; }
+    80% { transform: translateY(55px) translateX(8px) rotate(-45deg); opacity: 0.3; }
+    100% { transform: translateY(75px) translateX(-3px) rotate(90deg); opacity: 0; }
+}
+
+@keyframes spin-cycle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes color-shift {
+    0% { color: #0d9488; }
+    30% { color: #0d9488; }
+    50% { color: #f59e0b; }
+    70% { color: #ef4444; }
+    85% { color: #ef4444; }
+    100% { color: #0d9488; }
+}
+
+/* Typing Effect */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #5FC9B8; }
+}
+
+/* ==========================================
+   INITIAL STATES
+   ========================================== */
 
 [data-animate] {
     opacity: 0;
 }
 
-/* === PROBLEM SECTION ANIMATIONS === */
+/* ==========================================
+   PROBLEM SECTION ANIMATIONS
+   ========================================== */
 
 [data-animate="problem-badge"] {
     animation: slideDown 0.6s ease-out forwards;
@@ -256,7 +291,48 @@
     opacity: 0.3;
 }
 
-/* === SERVICES SECTION ANIMATIONS === */
+/* Problem Section Icons Animation */
+.scattered-dots {
+    color: #0d9488;
+}
+
+.falling-dot {
+    opacity: 0.9;
+}
+
+.dot-1 { animation: fall-chaos 3s ease-in infinite; animation-delay: 0s; }
+.dot-2 { animation: fall-chaos 2.5s ease-in infinite; animation-delay: 0.3s; }
+.dot-3 { animation: fall-chaos 3.2s ease-in infinite; animation-delay: 0.6s; }
+.dot-4 { animation: fall-chaos 2.8s ease-in infinite; animation-delay: 0.15s; }
+.dot-5 { animation: fall-chaos 3.5s ease-in infinite; animation-delay: 0.45s; }
+.dot-6 { animation: fall-chaos 2.6s ease-in infinite; animation-delay: 0.75s; }
+.dot-7 { animation: fall-chaos 3.1s ease-in infinite; animation-delay: 0.2s; }
+.dot-8 { animation: fall-chaos 2.9s ease-in infinite; animation-delay: 0.5s; }
+
+.cycle-spin {
+    color: #0d9488;
+    animation: 
+        spin-cycle 2s linear infinite,
+        color-shift 6s ease-in-out infinite;
+}
+
+.cycle-path {
+    stroke: currentColor;
+}
+
+.clock-hour,
+.clock-minute,
+.clock-second {
+    transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+.clock-second {
+    transition: none;
+}
+
+/* ==========================================
+   SERVICES SECTION ANIMATIONS
+   ========================================== */
 
 .service-block {
     opacity: 0;
@@ -320,11 +396,14 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* === CASES SECTION ANIMATIONS === */
+/* ==========================================
+   CASES SECTION ANIMATIONS
+   ========================================== */
 
 .case-card {
     opacity: 0;
     transform: translateY(40px);
+    transition: all 0.3s ease;
 }
 
 .case-card.animated {
@@ -358,34 +437,62 @@
     animation: cascadeIn 0.6s ease-out 0.7s forwards;
 }
 
-.case-card.animated .case-after {
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
+/* ===== PROGRESS BAR (INTERAKTIF) ===== */
 .progress-bar {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     overflow: hidden;
+    margin-top: 10px;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(to right, #ef4444, #f97316);
-    border-radius: 3px;
-    width: 0;
-    transition: width 1.5s ease-out;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                background 0.8s ease, 
+                box-shadow 0.8s ease;
 }
 
+/* Warna Warning (Kuning → Merah) */
+.progress-fill.warning {
+    background: linear-gradient(90deg, #FCD34D, #F59E0B, #EF4444);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* Warna Success (Hijau/Mint → Teal) */
 .progress-fill.success {
-    background: linear-gradient(to right, #14b8a6, #06b6d4);
+    background: linear-gradient(90deg, #4FD1C5, #2DD4BF, #14B8A6);
+    box-shadow: 0 0 12px rgba(79, 209, 197, 0.6);
 }
 
-.case-card.animated .progress-fill {
-    width: attr(data-progress);
+/* Percentage Label */
+.progress-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 4px;
+    text-align: right;
+    transition: color 0.5s ease;
 }
 
-/* === PRICING SECTION ANIMATIONS === */
+.progress-label.warning {
+    color: #FCD34D;
+}
+
+.progress-label.success {
+    color: #4FD1C5;
+}
+
+/* Fade in animation untuk detail */
+.animate-fade-in {
+    animation: fade-in 0.4s ease-out;
+}
+
+/* ==========================================
+   PRICING SECTION ANIMATIONS
+   ========================================== */
 
 .pricing-card {
     opacity: 0;
@@ -431,7 +538,9 @@
     animation: pulseGlow 2s ease-in-out infinite;
 }
 
-/* === CONTACT SECTION ANIMATIONS === */
+/* ==========================================
+   CONTACT SECTION ANIMATIONS
+   ========================================== */
 
 .form-input {
     opacity: 0;
@@ -447,7 +556,9 @@
 [data-animate="contact-section"].animated .form-input:nth-child(3) { animation-delay: 0.5s; }
 [data-animate="contact-section"].animated .form-input:nth-child(4) { animation-delay: 0.6s; }
 
-/* === GENERAL ANIMATIONS === */
+/* ==========================================
+   GENERAL ANIMATIONS
+   ========================================== */
 
 .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -492,17 +603,9 @@
     animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: #5FC9B8; }
-}
-
-/* === CTA SECTION === */
+/* ==========================================
+   CTA & HEADING
+   ========================================== */
 
 .cta-section {
     opacity: 0;
@@ -512,8 +615,6 @@
     animation: fadeInUp 0.6s ease-out forwards;
     animation-delay: 0.6s;
 }
-
-/* === HEADING UNDERLINE === */
 
 .heading-underline {
     position: relative;
@@ -536,7 +637,9 @@
     animation: underlineExpand 1s ease-out 0.5s forwards;
 }
 
-/* === RESPONSIVE === */
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
 
 @media (max-width: 768px) {
     .pricing-card {
@@ -548,7 +651,9 @@
     }
 }
 
-/* === REDUCED MOTION === */
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
 
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -565,127 +670,45 @@
         white-space: normal;
     }
 }
-/* ============================================
-   ANIMATION.CSS
-   Animasi untuk section "Masalah yang Sering Muncul"
-   ============================================ */
-
-/* ===== Animasi Titik Jatuh Berantakan (Card 2) ===== */
-.scattered-dots {
-    color: #0d9488; /* teal */
+/* Smooth rotation untuk arrow */
+.arrow {
+    transition: transform 0.3s ease;
 }
 
-.falling-dot {
-    opacity: 0.9;
+/* Hover effect untuk card */
+.case-card:hover {
+    transform: translateY(-4px);
 }
 
-.dot-1 { animation: fall-chaos 3s ease-in infinite; animation-delay: 0s; }
-.dot-2 { animation: fall-chaos 2.5s ease-in infinite; animation-delay: 0.3s; }
-.dot-3 { animation: fall-chaos 3.2s ease-in infinite; animation-delay: 0.6s; }
-.dot-4 { animation: fall-chaos 2.8s ease-in infinite; animation-delay: 0.15s; }
-.dot-5 { animation: fall-chaos 3.5s ease-in infinite; animation-delay: 0.45s; }
-.dot-6 { animation: fall-chaos 2.6s ease-in infinite; animation-delay: 0.75s; }
-.dot-7 { animation: fall-chaos 3.1s ease-in infinite; animation-delay: 0.2s; }
-.dot-8 { animation: fall-chaos 2.9s ease-in infinite; animation-delay: 0.5s; }
-
-@keyframes fall-chaos {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 1;
-    }
-    20% {
-        transform: translateY(10px) translateX(-8px) rotate(45deg);
-        opacity: 0.9;
-    }
-    40% {
-        transform: translateY(25px) translateX(12px) rotate(-30deg);
-        opacity: 0.8;
-    }
-    60% {
-        transform: translateY(40px) translateX(-5px) rotate(60deg);
-        opacity: 0.6;
-    }
-    80% {
-        transform: translateY(55px) translateX(8px) rotate(-45deg);
-        opacity: 0.3;
-    }
-    100% {
-        transform: translateY(75px) translateX(-3px) rotate(90deg);
-        opacity: 0;
-    }
-}
-
-/* ===== Animasi Siklus Berputar → Merah (Card 3) ===== */
-.cycle-spin {
-    color: #0d9488; /* teal awal */
-    animation: 
-        spin-cycle 2s linear infinite,
-        color-shift 6s ease-in-out infinite;
-}
-
-.cycle-path {
-    stroke: currentColor;
-}
-
-@keyframes spin-cycle {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes color-shift {
-    0% {
-        color: #0d9488; /* teal */
-    }
-    30% {
-        color: #0d9488; /* tetap teal */
-    }
-    50% {
-        color: #f59e0b; /* kuning/amber - transisi */
-    }
-    70% {
-        color: #ef4444; /* merah - warning */
-    }
-    85% {
-        color: #ef4444; /* tetap merah */
-    }
-    100% {
-        color: #0d9488; /* kembali ke teal */
-    }
-}
-
-/* ===== Jam Analog (Card 1) ===== */
-.clock-hour,
-.clock-minute,
-.clock-second {
-    transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
-}
-
-.clock-second {
-    transition: none; /* detik bergerak smooth tanpa delay */
-}
+/* Progress bar container */
 .progress-bar {
     width: 100%;
-    height: 6px;
+    height: 8px;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
+/* Progress fill dengan transisi smooth */
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #4FD1C5, #14B8A6);
-    border-radius: 3px;
-    width: 0%; /* Akan dianimasikan oleh JS */
-    transition: width 1.5s ease-out;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                background 0.8s ease, 
+                box-shadow 0.8s ease;
 }
 
+/* Warning state (kuning-merah) */
+.progress-fill.warning {
+    background: linear-gradient(90deg, #FCD34D, #F59E0B, #EF4444);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+/* Success state (hijau-mint) */
 .progress-fill.success {
-    background: linear-gradient(90deg, #4FD1C5, #5EEAD4);
-    box-shadow: 0 0 10px rgba(79, 209, 197, 0.5);
+    background: linear-gradient(90deg, #4FD1C5, #2DD4BF, #14B8A6);
+    box-shadow: 0 0 12px rgba(79, 209, 197, 0.6);
 }
 
 /* Fade in animation */
@@ -695,10 +718,19 @@
 }
 
 .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.4s ease-out;
 }
 
-/* Smooth transition untuk card */
+/* Smooth transitions */
 .case-card {
     transition: all 0.3s ease;
+}
+
+.case-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Arrow rotation */
+.arrow {
+    transition: transform 0.3s ease;
 }

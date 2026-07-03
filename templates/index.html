@@ -95,11 +95,11 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
             
-            <a href="https://wa.me/628xxxxxx?text=Halo%20Vantage%20Solutions%2C%20saya%20mau%20tanya%20soal%20layanan" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="btn-shine border-2 border-mint text-mint font-semibold py-4 px-8 rounded-full hover:bg-mint hover:text-navy transition-all duration-300 text-lg hover:scale-105 transform backdrop-blur-sm inline-flex items-center justify-center gap-2">
-                💬 Tanya via WhatsApp
+            <a href="https://wa.me/message/D3S2QIK7XLEQF1" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-shine border-2 border-mint text-mint font-semibold py-4 px-8 rounded-full hover:bg-mint hover:text-navy transition-all duration-300 text-lg hover:scale-105 transform backdrop-blur-sm inline-flex items-center justify-center gap-2">
+                💬 Konsultasi Gratis via WhatsApp
             </a>
         </div>
         
@@ -292,7 +292,8 @@
     <div class="max-w-5xl mx-auto">
         <div data-animate="services-heading">
             <p class="text-teal font-semibold text-sm tracking-widest uppercase text-center mb-3">Layanan</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-16">Yang Kami Kerjakan</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">Yang Kami Kerjakan</h2>
+            <p class="text-gray-500 text-center mb-16 max-w-2xl mx-auto">Dari data berantakan sampai sistem otomatis — kami tangani end-to-end, tanpa Anda perlu paham teknis.</p>
         </div>
         
         <div class="space-y-16">
@@ -301,15 +302,23 @@
                  data-animate="service-block" 
                  data-delay="{{ loop.index0 * 150 }}">
                 <div class="md:w-1/2">
-                    <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-2xl flex items-center justify-center mb-6 shadow-md service-icon">
+                    <div class="w-16 h-16 bg-gradient-to-br from-mint to-teal rounded-2xl flex items-center justify-center mb-6 shadow-md service-icon relative">
                         {{ s.icon | safe }}
+                        {% if s.is_new %}
+                        <span class="absolute -top-2 -right-2 bg-mint text-navy text-xs font-bold px-2 py-0.5 rounded-full animate-pulse">BARU</span>
+                        {% endif %}
                     </div>
-                    <h3 class="text-2xl font-bold text-navy mb-4 service-title">{{ s.title }}</h3>
+                    <h3 class="text-2xl font-bold text-navy mb-2 service-title">
+                        {{ s.title }}
+                        {% if s.is_core %}
+                        <span class="text-mint text-sm font-semibold">★ Layanan Inti</span>
+                        {% endif %}
+                    </h3>
                     <p class="text-gray-600 leading-relaxed mb-6 service-desc">{{ s.desc }}</p>
                     <ul class="space-y-3">
                         {% for d in s.details %}
-                        <li class="flex items-start gap-3 text-sm text-gray-700 service-detail" style="--delay: {{ loop.index0 * 100 }}ms">
-                            <span class="text-mint font-bold mt-0.5 checkmark">✓</span>
+                        <li class="flex items-start gap-3 text-sm text-gray-700 service-detail">
+                            <span class="text-mint font-bold mt-0.5">✓</span>
                             <span>{{ d }}</span>
                         </li>
                         {% endfor %}
@@ -318,19 +327,12 @@
                 <div class="md:w-1/2 bg-gradient-to-br from-soft to-white rounded-2xl p-8 w-full border border-gray-100 shadow-sm">
                     <p class="text-xs text-gray-400 uppercase tracking-widest mb-3">Output yang Anda terima</p>
                     <ul class="space-y-3">
-                        {% if s.id == 'analytics' %}
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">📊 Dashboard interaktif (web-based, akses dari HP)</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">📄 Laporan analisis siap presentasi (PDF/PPT)</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📈 Insight tertulis: "apa artinya untuk bisnis Anda"</li>
-                        {% elif s.id == 'engineering' %}
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">🔗 Pipeline data berjalan otomatis</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">🗄️ Database terstruktur & terdokumentasi</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📋 Panduan akses & maintenance sederhana</li>
-                        {% else %}
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 0ms">🤖 Bot siap pakai di WhatsApp/Telegram</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 100ms">⚡ Proses otomatis jalan terjadwal</li>
-                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: 200ms">📘 Panduan penggunaan & troubleshooting</li>
-                        {% endif %}
+                        {% for o in s.outputs %}
+                        <li class="bg-white p-4 rounded-xl shadow-sm text-sm border border-gray-100 output-card" style="--delay: {{ loop.index0 * 100 }}ms">
+                            <span class="mr-2">{{ o.icon }}</span>
+                            <span>{{ o.text }}</span>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -342,57 +344,99 @@
 
 <!-- ===== TRACK RECORD ===== -->
 <section id="cases" class="py-20 px-6 bg-gradient-to-br from-navy to-teal text-white">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-5xl mx-auto">
         <div data-animate="cases-heading">
             <p class="text-mint font-semibold text-sm tracking-widest uppercase text-center mb-3">Studi Kasus</p>
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Hasil Nyata, Bukan Janji</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Hasil Nyata, Bukan Janji</h2>
+            <p class="text-gray-300 text-center mb-16 max-w-2xl mx-auto">
+                Klik kartu untuk melihat transformasi
+            </p>
         </div>
         
-        <div class="space-y-12">
-            {# Pastikan data-delay ada DI DALAM loop ini #}
+        <div class="space-y-8">
             {% for c in cases %}
-            <div class="case-card bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-mint/50 transition-all cursor-pointer"
+            <div class="case-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20 hover:border-mint/50 transition-all cursor-pointer"
                  data-animate="case-card"
                  data-delay="{{ loop.index0 * 200 }}"
-                 onclick="toggleCaseDetail(this)">
+                 onclick="toggleCase(this)">
                 
-                <h3 class="text-xl font-bold mb-6 text-mint case-title">{{ c.title }}</h3>
+                <!-- Title -->
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-mint to-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-5 h-5 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-mint">{{ c.title }}</h3>
+                </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="case-before">
-                        <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sebelum</p>
-                        <p class="text-gray-300 text-sm leading-relaxed">{{ c.before[:100] }}...</p>
-                        <div class="progress-bar mt-4">
-                            <div class="progress-fill" data-progress="30"></div>
+                <!-- Grid Before-After -->
+                <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                    <!-- MASALAH (Selalu tetap) -->
+                    <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <span class="text-xs font-bold text-red-400 uppercase">Masalah</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-4">{{ c.before[:100] }}...</p>
+                        <div class="bg-white/10 rounded-full h-2 overflow-hidden">
+                            <div class="progress-bar-masalah h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full" 
+                                 style="width: 25%; transition: width 1s ease;"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs">
+                            <span class="text-red-400">Efisiensi</span>
+                            <span class="text-red-400 font-bold">25%</span>
                         </div>
                     </div>
-                    <div class="case-after">
-                        <p class="text-xs text-mint uppercase tracking-widest mb-2">Sesudah</p>
-                        <p class="text-white text-sm leading-relaxed">{{ c.after[:100] }}...</p>
-                        <div class="progress-bar mt-4">
-                            <div class="progress-fill success" data-progress="95"></div>
+                    
+                    <!-- HASIL (Berubah saat diklik) -->
+                    <div class="hasil-section bg-green-500/10 border border-green-500/30 rounded-xl p-5 relative">
+                        <div class="absolute top-3 right-3 bg-mint/20 px-2 py-0.5 rounded text-xs font-bold text-mint">
+                            ✓ Solusi
+                        </div>
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-mint flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-xs font-bold text-mint uppercase">Hasil</span>
+                        </div>
+                        <p class="text-white text-sm mb-4">{{ c.after[:100] }}...</p>
+                        <div class="bg-white/10 rounded-full h-2 overflow-hidden">
+                            <div class="progress-bar-hasil h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full transition-all duration-1000" 
+                                 style="width: 25%;"
+                                 data-width="95"></div>
+                        </div>
+                        <div class="flex justify-between mt-2 text-xs">
+                            <span class="hasil-label text-red-400">Efisiensi</span>
+                            <span class="hasil-value text-red-400 font-bold">25%</span>
                         </div>
                     </div>
                 </div>
 
-                {# Detail tersembunyi #}
+                <!-- Detail (Hidden by default) -->
                 <div class="case-detail hidden mt-6 pt-6 border-t border-white/20">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Sebelum (Detail)</p>
-                            <p class="text-gray-300 text-sm leading-relaxed">{{ c.before }}</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-500/10 rounded-lg p-4 border border-red-500/20">
+                            <p class="text-xs text-red-400 font-bold uppercase mb-2">📉 Sebelum (Detail)</p>
+                            <p class="text-gray-300 text-sm">{{ c.before }}</p>
                         </div>
-                        <div>
-                            <p class="text-xs text-mint uppercase tracking-widest mb-2">Sesudah (Detail)</p>
-                            <p class="text-white text-sm leading-relaxed">{{ c.after }}</p>
+                        <div class="bg-green-500/10 rounded-lg p-4 border border-mint/30">
+                            <p class="text-xs text-mint font-bold uppercase mb-2">📈 Sesudah (Detail)</p>
+                            <p class="text-white text-sm">{{ c.after }}</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-4 text-center">
-                    <span class="text-mint text-sm font-semibold">
-                        Klik untuk lihat detail <span class="arrow">↓</span>
-                    </span>
+                <!-- Toggle Button -->
+                <div class="mt-6 text-center">
+                    <button class="inline-flex items-center gap-2 text-mint hover:gap-3 transition-all">
+                        <span class="toggle-text text-sm font-semibold">Lihat Transformasi Lengkap</span>
+                        <svg class="w-4 h-4 arrow transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
             {% endfor %}
@@ -415,15 +459,16 @@
                  data-animate="pricing-card"
                  data-delay="0">
                 <h3 class="text-lg font-bold text-navy">Starter</h3>
-                <p class="text-sm text-gray-500 mt-1">Untuk mahasiswa & proyek kecil</p>
-                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="400">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-500 mt-1">Untuk mahasiswa, UKM & proyek kecil</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value">Mulai <span class="text-teal">Rp150K</span></p>
                 <p class="text-sm text-gray-400">per proyek</p>
                 <hr class="my-6 border-gray-100">
                 <ul class="space-y-3 text-sm text-gray-700 flex-1">
-                    <li class="pricing-feature">✓ Data cleaning & formatting</li>
-                    <li class="pricing-feature">✓ Visualisasi data (grafik, chart)</li>
+                    <li class="pricing-feature">✓ Pembuatan web sederhana (landing page, form, portfolio)</li>
+                    <li class="pricing-feature">✓ Bantuan teknis ringan (debugging, instalasi tools)</li>
+                    <li class="pricing-feature">✓ Data cleaning & visualisasi dasar</li>
+                    <li class="pricing-feature">✓ Konsultasi singkat (chat/Zoom)</li>
                     <li class="pricing-feature">✓ 1x revisi</li>
-                    <li class="pricing-feature">✓ File siap pakai (Excel/PDF)</li>
                 </ul>
                 <a href="https://wa.me/628xxxxxx?text=Halo%2C%20saya%20mau%20tanya%20paket%20Starter" target="_blank" class="block text-center bg-gradient-to-r from-navy to-teal text-white py-3 rounded-full mt-8 hover:from-teal hover:to-navy transition-all font-semibold text-sm">
                     Pilih Starter
@@ -436,14 +481,16 @@
                  data-delay="150">
                 <span class="absolute -top-3 right-6 bg-gradient-to-r from-mint to-teal text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-pulse-glow">PALING POPULER</span>
                 <h3 class="text-lg font-bold text-navy">Growth</h3>
-                <p class="text-sm text-gray-500 mt-1">Untuk bisnis menengah</p>
-                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="2500">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-500 mt-1">Untuk bisnis menengah & startup</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value">Mulai <span class="text-teal">Rp2,5Jt</span></p>
                 <p class="text-sm text-gray-400">per proyek</p>
                 <hr class="my-6 border-gray-100">
                 <ul class="space-y-3 text-sm text-gray-700 flex-1">
-                    <li class="pricing-feature">✓ Dashboard otomatis interaktif</li>
-                    <li class="pricing-feature">✓ Integrasi data (API, database)</li>
-                    <li class="pricing-feature">✓ Automasi laporan rutin</li>
+                    <li class="pricing-feature">✓ Dashboard interaktif (Looker Studio / Power BI)</li>
+                    <li class="pricing-feature">✓ Integrasi data (API, database, Google Sheets)</li>
+                    <li class="pricing-feature">✓ Automasi laporan rutin (jadwal, email, notifikasi)</li>
+                    <li class="pricing-feature">✓ Web app sederhana (Flask/Streamlit)</li>
+                    <li class="pricing-feature">✓ Bot Telegram/WhatsApp (notifikasi, alert)</li>
                     <li class="pricing-feature">✓ 2x revisi</li>
                     <li class="pricing-feature">✓ Support 30 hari setelah delivery</li>
                 </ul>
@@ -457,16 +504,18 @@
                  data-animate="pricing-card"
                  data-delay="300">
                 <h3 class="text-lg font-bold text-navy">Scale</h3>
-                <p class="text-sm text-gray-500 mt-1">Sistem end-to-end</p>
-                <p class="text-3xl font-extrabold text-navy mt-6 price-value" data-price="6000">Rp<span class="counter">0</span>K</p>
+                <p class="text-sm text-gray-500 mt-1">Sistem end-to-end untuk perusahaan</p>
+                <p class="text-3xl font-extrabold text-navy mt-6 price-value">Mulai <span class="text-teal">Rp6Jt</span>+</p>
                 <p class="text-sm text-gray-400">per proyek</p>
                 <hr class="my-6 border-gray-100">
                 <ul class="space-y-3 text-sm text-gray-700 flex-1">
-                    <li class="pricing-feature">✓ Semua di Growth</li>
-                    <li class="pricing-feature">✓ Bot WhatsApp/Telegram custom</li>
-                    <li class="pricing-feature">✓ Web app ringan</li>
+                    <li class="pricing-feature">✓ Semua fitur di paket Growth</li>
+                    <li class="pricing-feature">✓ Web app full custom (database, auth, deployment)</li>
+                    <li class="pricing-feature">✓ Bot WhatsApp/Telegram custom (2 arah, interaktif)</li>
+                    <li class="pricing-feature">✓ AI/ML integration (jika diperlukan)</li>
                     <li class="pricing-feature">✓ Pendampingan penuh 3 bulan</li>
                     <li class="pricing-feature">✓ Garansi bug fix 1 bulan</li>
+                    <li class="pricing-feature">✓ Akses penuh: modifikasi & scaling kapan saja</li>
                 </ul>
                 <a href="https://wa.me/628xxxxxx?text=Halo%2C%20saya%20mau%20diskusi%20paket%20Scale" target="_blank" class="block text-center bg-gradient-to-r from-navy to-teal text-white py-3 rounded-full mt-8 hover:from-teal hover:to-navy transition-all font-semibold text-sm">
                     Diskusi Kebutuhan
@@ -478,42 +527,182 @@
     </div>
 </section>
 
-<!-- ===== BACKGROUND SINGKAT ===== -->
-<section class="py-10 px-6 bg-gradient-to-r from-soft to-white border-t border-gray-100">
-    <div class="max-w-3xl mx-auto text-center" data-animate="fade-in">
-        <p class="text-gray-400 text-xs tracking-widest uppercase mb-2">Tentang Founder</p>
-        <p class="text-gray-500 text-sm">Lulusan Informatika dengan pengalaman 2+ tahun membantu UMKM, koperasi, distributor, dan mahasiswa di berbagai sektor — mengubah data mentah jadi insight dan proses otomatis yang berdampak.</p>
-    </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="py-24 px-6 bg-gradient-to-br from-navy to-teal text-white relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-64 h-64 bg-mint/20 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl animate-float-delayed"></div>
-    <div class="max-w-2xl mx-auto text-center relative z-10" data-animate="contact-section">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Siap Bekerja Sama?</h2>
-        <p class="text-gray-200 mb-10 leading-relaxed">Ceritakan kebutuhan atau masalah data Anda. Kami akan berikan masukan awal dan estimasi biaya — gratis, tanpa komitmen.</p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="https://wa.me/628xxxxxx?text=Halo%20Vantage%20Solutions%2C%20saya%20ingin%20konsultasi" target="_blank" class="bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-8 rounded-full transition-all flex items-center justify-center gap-2 text-lg shadow-lg hover:scale-105 transform">
-                <span>💬</span> WhatsApp Langsung
-            </a>
-            <a href="mailto:hello@vantagesolutions.id" class="border-2 border-mint text-mint font-semibold py-4 px-8 rounded-full hover:bg-mint hover:text-navy transition-all text-lg hover:scale-105 transform">
-                ✉️ Email Kami
-            </a>
+<!-- ===== KENAPA KAMI ===== -->
+<section class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16" >
+            <p class="text-teal font-semibold text-sm tracking-widest uppercase mb-3">Kenapa Kami</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-navy mb-4">Bukan Sekadar Vendor, Tapi Partner</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Kami fokus pada hasil yang berdampak, bukan sekadar menyelesaikan tugas.</p>
         </div>
-        <p class="text-gray-400 text-xs mt-8">Atau isi form di bawah (akan kami balas 1x24 jam):</p>
-        <form class="mt-6 max-w-md mx-auto space-y-4" action="#" method="POST">
-            <input type="text" placeholder="Nama Anda" class="form-input w-full px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm">
-            <input type="text" placeholder="No. WhatsApp atau Email" class="form-input w-full px-5 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm">
-            <textarea rows="3" placeholder="Ceritakan singkat kebutuhan Anda..." class="form-input w-full px-5 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-mint text-sm backdrop-blur-sm"></textarea>
-            <button type="submit" class="w-full bg-gradient-to-r from-mint to-teal text-white font-bold py-3 rounded-full hover:from-teal hover:to-mint transition-all shadow-md hover:scale-105 transform">Kirim Pesan</button>
-        </form>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Komunikasi Cepat</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Respons dalam hitungan menit, bukan hari. Selalu available untuk pertanyaan dan update progress.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Transparan & Jujur</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Harga pasti di awal, tanpa biaya tersembunyi. Jika scope berubah, kami diskusi dulu sebelum jalan.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Support Pasca-Proyek</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Tidak tinggal jalan setelah delivery. Support 30 hari, pelatihan tim, dan dokumentasi lengkap.</p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Hasil Terukur</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Setiap proyek punya KPI jelas. Anda bisa lihat dampaknya langsung: waktu hemat, error turun, keputusan lebih cepat.</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Tidak Perlu Paham Teknis</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Pakai bahasa manusia, bukan bahasa coding. Cukup jelaskan masalah bisnis, biar kami yang handle teknisnya.</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="why-card group bg-gradient-to-br from-white to-soft p-8 rounded-2xl border border-gray-100 hover:border-teal/30 hover:shadow-xl hover:shadow-teal/5 transition-all duration-500" >
+                <div class="w-12 h-12 bg-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-teal/20 transition-all duration-500">
+                    <svg class="w-6 h-6 text-teal" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-bold text-navy mb-2">Garansi Revisi</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Tidak puas dengan hasil? Kami revisi sampai sesuai ekspektasi. Kepuasan Anda prioritas utama.</p>
+            </div>
+        </div>
+
+        <!-- Highlight Stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 bg-gradient-to-r from-navy to-teal rounded-2xl p-8" >
+            <div class="text-center">
+                <p class="text-3xl md:text-4xl font-extrabold text-mint">2+</p>
+                <p class="text-sm text-gray-300 mt-1">Tahun Pengalaman</p>
+            </div>
+            <div class="text-center">
+                <p class="text-3xl md:text-4xl font-extrabold text-mint">30+</p>
+                <p class="text-sm text-gray-300 mt-1">Proyek Selesai</p>
+            </div>
+            <div class="text-center">
+                <p class="text-3xl md:text-4xl font-extrabold text-mint">100%</p>
+                <p class="text-sm text-gray-300 mt-1">Klien Puas</p>
+            </div>
+            <div class="text-center">
+                <p class="text-3xl md:text-4xl font-extrabold text-mint">&lt; 1j</p>
+                <p class="text-sm text-gray-300 mt-1">Rata-rata Respons</p>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer class="bg-navy border-t border-white/10 py-8 px-6 text-center text-gray-400 text-xs">
-    <p>© 2024 Vantage Solutions. Dibangun dengan standar profesional, hasil untuk bisnis Anda.</p>
+<footer class="bg-navy text-white py-12 px-6 border-t border-white/10">
+    <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <!-- Branding -->
+            <div class="md:col-span-2">
+                <h3 class="text-xl font-bold mb-3 bg-gradient-to-r from-mint to-teal bg-clip-text text-transparent">
+                    Vantage Solution
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Merapikan data, mengotomatisasi bisnis. Dari data berantakan sampai sistem otomatis — tanpa Anda perlu paham teknis.
+                </p>
+                <!-- Social Media -->
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/vantagesolutions.id/" target="_blank" rel="noopener noreferrer"
+                       class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-mint/20 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/message/D3S2QIK7XLEQF1" target="_blank" rel="noopener noreferrer"
+                       class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-mint/20 transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-bold mb-4 text-mint">Navigasi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="text-gray-400 hover:text-mint transition-colors">Home</a></li>
+                    <li><a href="#services" class="text-gray-400 hover:text-mint transition-colors">Layanan</a></li>
+                    <li><a href="#cases" class="text-gray-400 hover:text-mint transition-colors">Studi Kasus</a></li>
+                    <li><a href="#pricing" class="text-gray-400 hover:text-mint transition-colors">Harga</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="font-bold mb-4 text-mint">Kontak</h4>
+                <ul class="space-y-3 text-sm">
+                    <li>
+                        <a href="mailto:mr.fahrezaaa@gmail.com" class="text-gray-400 hover:text-mint transition-colors flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            mr.fahrezaaa@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/message/D3S2QIK7XLEQF1" target="_blank" class="text-gray-400 hover:text-mint transition-colors flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                            Chat WhatsApp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/vantagesolutions.id/" target="_blank" class="text-gray-400 hover:text-mint transition-colors flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            @vantagesolutions.id
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-white/10 pt-6 text-center text-sm text-gray-500">
+            <p>&copy; 2026 Vantage Solution. All rights reserved.</p>
+        </div>
+    </div>
 </footer>
 
 <!-- ===== CHAT WIDGET ===== -->

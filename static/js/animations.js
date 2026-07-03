@@ -308,52 +308,189 @@ if (typeof module !== 'undefined' && module.exports) {
     });
 })();
 
-// ===== PROGRESS BAR ANIMATION =====
+// ===== PROGRESS BAR ANIMATION (INTERAKTIF) =====
 (function() {
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const progressBars = entry.target.querySelectorAll('.progress-fill');
-                progressBars.forEach(bar => {
-                    const progress = bar.getAttribute('data-progress');
-                    bar.style.width = '0%';
-                    bar.style.transition = 'width 1.5s ease-out';
-                    
-                    setTimeout(() => {
-                        bar.style.width = progress + '%';
-                    }, 100);
+                const bars = entry.target.querySelectorAll('.progress-fill');
+                
+                bars.forEach(bar => {
+                    const initialProgress = bar.getAttribute('data-progress');
+                    bar.style.width = initialProgress + '%';
                 });
                 
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-    
-    // Observe semua case card
+    }, { threshold: 0.3 });
+
     document.querySelectorAll('.case-card').forEach(card => {
         observer.observe(card);
     });
 })();
 
-// ===== TOGGLE CASE DETAIL =====
+// ===== TOGGLE CASE DETAIL + PROGRESS BAR =====
 function toggleCaseDetail(card) {
     const detail = card.querySelector('.case-detail');
     const arrow = card.querySelector('.arrow');
+    const toggleText = card.querySelector('.toggle-text');
+    const isHidden = detail.classList.contains('hidden');
     
-    if (detail.classList.contains('hidden')) {
+    // Cari progress bar "Sesudah"
+    const afterSection = card.querySelector('.case-after');
+    const afterBar = afterSection.querySelector('.progress-fill');
+    const efficiencyLabel = afterSection.querySelector('.efficiency-label');
+    const efficiencyValue = afterSection.querySelector('.efficiency-value');
+    
+    if (isHidden) {
+        // EXPAND: Tampilkan detail + ubah jadi success
         detail.classList.remove('hidden');
         detail.classList.add('animate-fade-in');
-        arrow.textContent = '↑';
-        card.classList.add('border-mint/50');
+        arrow.style.transform = 'rotate(180deg)';
+        toggleText.textContent = 'Tutup Detail';
+        card.classList.add('border-mint/50', 'shadow-lg', 'shadow-mint/20');
+        
+        // Ubah progress bar "Sesudah"
+        if (afterBar) {
+            const targetProgress = afterBar.getAttribute('data-target');
+            setTimeout(() => {
+                afterBar.style.width = targetProgress + '%';
+                afterBar.classList.remove('warning');
+                afterBar.classList.add('success');
+            }, 100);
+        }
+        
+        // Ubah label efisiensi
+        if (efficiencyLabel) efficiencyLabel.textContent = 'Efisiensi';
+        if (efficiencyValue) {
+            efficiencyValue.textContent = '95%';
+            efficiencyValue.classList.remove('text-red-400');
+            efficiencyValue.classList.add('text-mint');
+        }
+        
+        // Ubah border section "Sesudah"
+        afterSection.classList.remove('border-green-500/20');
+        afterSection.classList.add('border-mint/50', 'bg-mint/10');
+        
     } else {
+        // COLLAPSE: Sembunyikan detail + kembalikan ke warning
         detail.classList.add('hidden');
         detail.classList.remove('animate-fade-in');
-        arrow.textContent = '↓';
-        card.classList.remove('border-mint/50');
+        arrow.style.transform = 'rotate(0deg)';
+        toggleText.textContent = 'Lihat Transformasi Lengkap';
+        card.classList.remove('border-mint/50', 'shadow-lg', 'shadow-mint/20');
+        
+        // Kembalikan progress bar
+        if (afterBar) {
+            const initialProgress = afterBar.getAttribute('data-progress');
+            afterBar.style.width = initialProgress + '%';
+            afterBar.classList.remove('success');
+            afterBar.classList.add('warning');
+        }
+        
+        // Kembalikan label
+        if (efficiencyLabel) efficiencyLabel.textContent = 'Efisiensi';
+        if (efficiencyValue) {
+            efficiencyValue.textContent = '25%';
+            efficiencyValue.classList.remove('text-mint');
+            efficiencyValue.classList.add('text-red-400');
+        }
+        
+        // Kembalikan border
+        afterSection.classList.remove('border-mint/50', 'bg-mint/10');
+        afterSection.classList.add('border-green-500/20');
     }
 }
+
+// ===== TOGGLE CASE DETAIL =====
+function toggleCase(card) {
+    const detail = card.querySelector('.case-detail');
+    const arrow = card.querySelector('.arrow');
+    const toggleText = card.querySelector('.toggle-text');
+    const progressBarHasil = card.querySelector('.progress-bar-hasil');
+    const hasilLabel = card.querySelector('.hasil-label');
+    const hasilValue = card.querySelector('.hasil-value');
+    const hasilSection = card.querySelector('.hasil-section');
+    
+    const isHidden = detail.classList.contains('hidden');
+    
+    if (isHidden) {
+        // SHOW DETAIL
+        detail.classList.remove('hidden');
+        detail.classList.add('animate-fade-in');
+        arrow.style.transform = 'rotate(180deg)';
+        toggleText.textContent = 'Tutup Detail';
+        
+        // UBAH PROGRESS BAR JADI HIJAU (95%)
+        setTimeout(() => {
+            if (progressBarHasil) {
+                progressBarHasil.style.width = '95%';
+                progressBarHasil.classList.remove('from-yellow-400', 'via-orange-500', 'to-red-500');
+                progressBarHasil.classList.add('from-emerald-400', 'via-teal-400', 'to-cyan-400');
+            }
+            
+            if (hasilLabel) {
+                hasilLabel.classList.remove('text-red-400');
+                hasilLabel.classList.add('text-mint');
+            }
+            
+            if (hasilValue) {
+                hasilValue.textContent = '95%';
+                hasilValue.classList.remove('text-red-400');
+                hasilValue.classList.add('text-mint');
+            }
+            
+            if (hasilSection) {
+                hasilSection.classList.remove('border-green-500/30');
+                hasilSection.classList.add('border-mint/50', 'bg-mint/20');
+            }
+        }, 100);
+        
+    } else {
+        // HIDE DETAIL - KEMBALIKAN KE WARNA ORANYE
+        detail.classList.add('hidden');
+        detail.classList.remove('animate-fade-in');
+        arrow.style.transform = 'rotate(0deg)';
+        toggleText.textContent = 'Lihat Transformasi Lengkap';
+        
+        // KEMBALIKAN PROGRESS BAR KE 25% ORANYE
+        if (progressBarHasil) {
+            progressBarHasil.style.width = '25%';
+            progressBarHasil.classList.remove('from-emerald-400', 'via-teal-400', 'to-cyan-400');
+            progressBarHasil.classList.add('from-yellow-400', 'via-orange-500', 'to-red-500');
+        }
+        
+        if (hasilLabel) {
+            hasilLabel.classList.remove('text-mint');
+            hasilLabel.classList.add('text-red-400');
+        }
+        
+        if (hasilValue) {
+            hasilValue.textContent = '25%';
+            hasilValue.classList.remove('text-mint');
+            hasilValue.classList.add('text-red-400');
+        }
+        
+        if (hasilSection) {
+            hasilSection.classList.remove('border-mint/50', 'bg-mint/20');
+            hasilSection.classList.add('border-green-500/30');
+        }
+    }
+}
+
+// ===== ANIMATION ON SCROLL =====
+(function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        observer.observe(el);
+    });
+})();
